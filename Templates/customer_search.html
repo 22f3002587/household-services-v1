@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search your desire service</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 28px;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            font-size: 16px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        select, input[type="text"], button {
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 160px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #575757;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #575757;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Customer Dashboard</h1>
+        <div>
+            <a href="/customer_home">Home</a>
+            <a href="/customer_search">Search</a>
+            <a href="/logout_user">Logout</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h3>Search for a service</h3>
+        <form action="/customer_search" method="POST">
+            <input type="hidden" name="form_id" value="search">
+            <label for="search_type">Search By: </label>
+            <select name="search_type" id="search_type" required>
+                <option value="">Select</option>
+                <option value="service_name">Service Name</option>
+                <option value="service_category">Service Category</option>
+            </select>
+            <input type="text" name="service" placeholder="Enter service..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Service Category</th>
+                    <th>Service Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in service %}
+                <tr>
+                    <td>{{record.service_category}}</td>
+                    <td>{{record.service_name}}</td>
+                    <td>{{record.description}}</td>
+                    <td>Rs. {{record.base_price}}</td>
+                    <td>
+                        <form action="/customer_search" method="POST">
+                            <input type="hidden" name="form_id" value="{{record.service_category}}">
+                            <input type="hidden" name="service_id" value="{{record.service_id}}">
+                            <input type="hidden" name="customer_email" value="{{user_data.email}}">
+                            <button class="btn" name="action" value="Book">Book</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

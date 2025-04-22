@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login</title>
+    <style>
+        /* Basic reset and body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Styling for heading */
+        h1 {
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            padding: 14px;
+            font-size: 24px;
+            font-weight: bolder;
+            margin-bottom: 40px;
+            width:656px;
+            border: 2px solid black;
+            border-radius: 20px;
+        }
+
+        /* Styling for the form */
+        form {
+            width: 350px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid black;
+        }
+
+        /* Styling form labels and inputs */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Alert styling */
+        h5 {
+            margin-bottom: 9px;
+            margin-top: 0px;
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Styling for buttons */
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: medium;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        /* Links styling */
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Center the form content */
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Welcome Customer</h1>
+        <form action="/customer_login" method="POST">
+            <label for="id1">Registered Email Id: </label>
+            <input type="text" id="id1" name="email" required><br>
+            <h5>{% if alert2 %}{{ alert2 }}{% endif %}</h5>
+            <label for="id2">Password: </label>
+            <input type="password" id="id2" name="password"><br>
+            <h5>{% if alert1 %}{{ alert1 }}{% endif %}</h5>
+            <button>Login</button><br>
+            <a href="/customer_signup">Create Account?</a><br>
+        </form>
+    </div>
+</body>
+
+</html>

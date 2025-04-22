@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home Dashboard</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: green;
+            color: white;
+        }
+
+        h3 {
+            margin-bottom: -11px;
+            font-size: 24px;
+            text-align: center;
+
+        }
+
+        .navbar a {
+            font-size: 19px;
+            float: right;
+            display: block;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            color: azure;
+            margin-top: -13px;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: xx-large;
+            font-weight: bolder;
+            margin-bottom: -35px;
+            padding: 20px;
+            margin-top: 2px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        table {
+            margin: 17px 134px;
+            border: 2px solid black;
+            border-radius: 19px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 17px;
+        }
+
+        th {
+            border-bottom: 2px solid black;
+        }
+
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        span {
+            margin: -9px 0px 19px 0px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Welcome to Admin Panel</h2>
+        <a href="/logout_user">Logout</a>
+        <a href="/admin_search">Search</a>
+        <a href="/admin_home">Home</a>
+    </div><br>
+    <h3>Professional Details: </h3><br>
+    {% if professional|length==0 %}
+    <p>No Professional Registered</p>
+    {% else %}
+    <form action="/admin_home" method="POST">
+        <input type="hidden" name="form_id" value="id1">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Service Name</th>
+                <th>Experience</th>
+                <th>Approval Status</th>
+                <th>Action</th>
+            </tr>
+            {% for record in professional %}
+            <tr>
+                <td>{{record.fullname}}</td>
+                <td><a href="/prof_view/{{record.email}}">{{record.email}}</a></td>
+                <td>{{record.service_name}}</td>
+                <td>{{record.experience}} Years</td>
+                <td>{{record.status}}</td>
+                <td><button name="action" value="Accept{{record.email}}">Accept</button>
+                    <button name="action" value="Reject{{record.email}}">Reject</button>
+                    <button name="action" value="Block{{record.email}}">Block</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form><br>
+    {% endif %}
+
+
+    <h3>Services: </h3><br>
+    {% if services|length==0 %}
+    <p>No Services Exist</p>
+
+    {% else %}
+    <form action="/admin_home" method="POST">
+        <input type="hidden" name="form_id" value="id2">
+        <table>
+            <tr>
+                <th>Service ID</th>
+                <th>Service Category</th>
+                <th>Service Name</th>
+                <th>Price</th>
+                <th>Expected Time</th>
+                <th>Action</th>
+            </tr>
+            {% for record in services %}
+            <tr>
+                <td>{{record.service_id}}</td>
+                <td>{{record.service_category}}</td>
+                <td>{{record.service_name}}</td>
+                <td>Rs. {{record.base_price}}</td>
+                <td>{{record.expected_time}}</td>
+                <td><button name="button" value="Edit{{record.service_id}}">Edit</button>
+                    <button name="button" value="Delete{{record.service_id}}">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form><br>
+    {% endif %}
+    <span><a href="/service_add"><button>Add Service</button></a></span>
+
+    <h3>Service Requests:</h3><br>
+    {% if service_request|length==0 %}
+    <p>No Request Exist</p>
+
+    {% else %}
+    <table>
+        <tr>
+            <th>Request ID</th>
+            <th>Customer_ID</th>
+            <th>Assigned Professional ID</th>
+            <th>Service</th>
+            <th>Request Date</th>
+            <th>Closed Date</th>
+            <th>Status</th>
+        </tr>
+        {% for record in service_request %}
+        <tr>
+            <td>{{record.request_id}}</td>
+            <td>{{record.customer_id}}</td>
+            <td>{{record.professional_id}}</td>
+            <td>{{record.service_name}}</td>
+            <td>{{record.requested_date.strftime('%d-%m-%Y')}}</td>
+            {% if record.closed_date == None %}
+            <td>Closing Date Pending</td>
+            {% else %}
+            <td>{{record.closed_date.strftime('%d-%m-%Y')}}</td>
+            {% endif %}
+            <td>{{record.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <h3>Customer Details:</h3><br>
+    {% if customer|length==0 %}
+    <p>No Professional Registered</p>
+
+    {% else %}
+    <form action="/admin_home" method="POST">
+        <input type="hidden" name="form_id" value="id3">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Pin Code</th>
+                <th>Contact</th>
+                <th>Action</th>
+                <th>Status</th>
+            </tr>
+            {% for record in customer %}
+            <tr>
+                <td>{{record.fullname}}</td>
+                <td>{{record.email}}</td>
+                <td>{{record.address}}</td>
+                <td>{{record.pin_code}}</td>
+                <td>{{record.contact}}</td>
+                <td>
+                    <button name="button" value="block{{record.email}}">Block</button>
+                    <button name="button" value="unblock{{record.email}}">Unblock</button>
+                </td>
+                <td>{{record.status}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    {% endif %}
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Request</title>
+</head>
+<body>
+    <h2>Edit Request</h2>
+    <form action="/edit_request" method="POST">
+        <h3>Your Request ID: {{req.request_id}}</h3>
+        <h3>Assigned Service: {{req.service_name}}</h3>
+        <label for="request">New Request Date: </label>
+        <input type="date" id="request" name="request" required><br>
+
+        <label for="schedule">New Scheduled Date: </label>
+        <input type="date" id="schedule" name="schedule" required><br>
+
+        <button name="done" value="{{req.request_id}}">Done</button>
+        <h4 style="color:green;">{% if message %}{{message}}{% endif %}</h4>
+
+        <a href="/customer_home">Go Back</a>
+
+    </form>
+</body>
+</html>

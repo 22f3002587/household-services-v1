@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Signup</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: beige;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: white;
+        padding: 20px 68px 20px 68px;
+        margin: 47px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #333;
+        width:400px;
+    }
+
+    form {
+        border: 2px solid black;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 500px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #555;
+        align-self: center;
+    }
+
+
+    button {
+        grid-column: span 2;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #555;
+    }
+
+    p {
+        grid-column: span 2;
+        text-align: center;
+        margin: 0;
+    }
+
+    a {
+        grid-column: span 2;
+        text-align: center;
+        color: #2176bd;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<body>
+    <h1>Service Professional Signup</h1>
+    <form action="/prof_signup" method="POST">
+        <label for="id1">Email ID (Username): </label>
+        <input type="text" id="id1" name="email" required>
+
+        <label for="id2">Password: </label>
+        <input type="password" id="id2" name="password" required>
+
+        <label for="id3">Fullname: </label>
+        <input type="text" id="id3" name="fullname" required>
+
+        <label for="id4">Service Category: </label>
+        <select id="id4" name="category" required>
+            <option>Select</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Saloon">Saloon</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Home_decor">Home Decoration</option>
+        </select>
+
+        <label for="service">Service Name: </label>
+        <select name="service" id="service" required>
+                <option value="">Select Service</option>
+            {% for service in services %}
+                <option>{{service.service_name}}</option>
+            {% endfor %}    
+        </select>
+
+        <label for="id8">Experience (in yrs):</label>
+        <input type="number" id="id8" name="experience">
+
+
+        <label for="id6">Address: </label>
+        <textarea name="address" id="id6" required></textarea>
+
+        <label for="id7">Pincode: </label>
+        <input type="text" name="pincode" id="id7">
+
+        <p style="color: rgb(217, 115, 84); font-weight: bold;">{% if message1 %}{{message1}}{% endif %}</p>
+
+        <button>Register</button>
+        
+        <p style="color: rgb(164, 217, 84); font-weight: bold;">{% if message2 %}{{message2}}{% endif %}</p>
+        
+        <a href="/prof_login">Login here</a>
+    </form>
+</body>
+
+</html>

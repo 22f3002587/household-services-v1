@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Professional</title>
+    <style>
+        .navbar {
+            background-color: black;
+            color: white;
+            margin-top: -3px;
+        }
+
+        h2 {
+            font-size: xx-large;
+            font-weight: bolder;
+            margin-bottom: -35px;
+            padding: 20px;
+            margin-top: 2px;
+            font-family: 'Cambria, Cochin, Georgia, Times, ' Times New Roman', serif';
+        }
+
+        .navbar a {
+            font-size: 19px;
+            float: right;
+            display: block;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            color: azure;
+            margin-top: -13px;
+            margin-bottom: 28px;
+        }
+
+        .profile {
+            position: relative;
+            display: inline-block;
+            left: 83%;
+            margin-top: 27px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgb(255, 255, 255);
+            width: 295px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            padding: 10px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .profile:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content h3 {
+            margin: 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-content h3:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content h3 span {
+            font-weight: normal;
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        img {
+            width: 90px;
+            margin: 0px 100px;
+            margin-bottom: -15px;
+        }
+
+        p {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            font-size: 19px;
+        }
+
+        .message {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        table {
+            border: 2px solid black;
+            margin: 34px 120px;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        th {
+            border-bottom: 2px solid black;
+        }
+
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        .heading {
+            font-size: 29px;
+            margin-left: 37px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .btn {
+            width: 75px;
+            padding: 10px;
+            background-color: skyblue;
+            color: purple;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Welcome to Professional Dashboard</h2>
+        <a href="/logout_user">Logout</a>
+        <a href="/prof_home">Home</a>
+    </div><br><br>
+
+    <div class="profile">
+        <button>View Profile</button>
+        <div class="dropdown-content">
+            <img src="/static/image.png" alt="user-image">
+            <h3
+                style="text-align:center; margin:5px 0px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+                Hello {{prof_data.fullname}}</h3>
+            <h3>Your Email: <span>{{prof_data.email}}</span></h3>
+            <h3>Experience: <span>{{prof_data.experience}} Years</span></h3>
+            <h3>Address: <span>{{prof_data.address}}</span></h3>
+            <h3>Specialisation: <span>{{prof_data.service_name}}</span></h3>
+            <h3>Admin Approval: <span>{{prof_data.status}}</span></h3>
+            <form action="/prof_home" method="POST">
+                <button style="background-color: black; width:105px; height:33px;" name="action"
+                    value="Edit{{prof_data.email}}">Edit Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <h3 class="heading">Today's Service Request: </h3>
+    {% if customer_details %}
+    <table>
+        <tr>
+            <th>Customer Email</th>
+            <th>Customer Name</th>
+            <th>Contact No.</th>
+            <th>Address</th>
+            <th>Pin Code</th>
+            <th>Scheduled Date</th>
+            <th>Action</th>
+        </tr>
+        {% for record in customer_details %}
+        <tr>
+            <td>{{record[0].email}}</td>
+            <td>{{record[0].fullname}}</td>
+            <td>{{record[0].contact}}</td>
+            <td>{{record[0].address}}</td>
+            <td>{{record[0].pin_code}}</td>
+            <td>{{record[1][0].strftime('%d-%m-%Y')}}</td>
+            <td>
+                <form action="/prof_home" method="POST">
+                    <button class='btn' name="action" value="Accept{{record[0].email}}">Accept</button>
+                    <button class='btn' name="action" value="Dismiss{{record[0].email}}">Dissmiss</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="message">No service request recieved yet </p>
+    {% endif %}
+
+    <p>{% if alert %}{{alert}}{% endif %}</p>
+
+    <h3 class="heading">Closed Services: </h2>
+        {% if closed_services %}
+        <table>
+            <tr>
+                <th>Request ID</th>
+                <th>Service ID</th>
+                <th>Customer ID</th>
+                <th>Action</th>
+            </tr>
+            {% for record in closed_services %}
+            <tr>
+                <td>{{record.request_id}}</td>
+                <td>{{record.service_id}}</td>
+                <td>{{record.customer_id}}</td>
+                <td>{{record.status}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p class="message">No service closed yet</p>
+        {% endif %}
+</body>
+
+</html>

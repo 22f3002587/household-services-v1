@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            background-color: black;
+            padding: 19px;
+            margin-top: -1px;
+        }
+
+        form {
+            border: 2px solid black;
+            width: 350px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bolder;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        h5 {
+            text-align: center;
+            margin: 2px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Welcome Admin</h2>
+    <form action="/admin_login" method="POST">
+        <label for="name">Admin Name :</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="Admin">Admin Email :</label>
+        <input type="text" id="Admin" name="email" required>
+        <h5>{% if message2 %}{{message2}}{% endif %}</h5>
+
+        <label for="pass">Admin Password :</label>
+        <input type="password" id="pass" name="password" required>
+        <h5>{% if message1 %}{{message1}}{% endif %}</h5>
+
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>

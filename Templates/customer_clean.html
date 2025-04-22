@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Services</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: black;
+            color: white;
+        }
+
+        .navbar a {
+            font-size: 19px;
+            float: right;
+            display: block;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            color: azure;
+            margin-top: -13px;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: xx-large;
+            font-weight: bolder;
+            margin-bottom: -35px;
+            padding: 20px;
+            margin-top: 2px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .cleaning {
+            margin: 0px auto;
+            border: 2px solid black;
+            border-radius: 15px;
+            width: 50%;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 25px;
+            margin-top: 12px;
+        }
+
+        table {
+            border: 2px solid black;
+            border-radius: 8px;
+            margin: 15px auto;
+        }
+
+        td {
+            padding: 10px 44px 1px 21px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Welcome to Customer Dashboard</h2>
+        <a href="#">Logout</a>
+        <a href="#">Summary</a>
+        <a href="#">Search</a>
+        <a href="#">Home</a>
+    </div>
+    <br><br>
+    <form action="/customer/service/cleaning">
+        <div class="cleaning">
+            <h3>Best Cleaning Packages</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Full home cleaning service</td>
+                        <td><button>Book</button></td>
+                    </tr>
+                    <tr>
+                        <td>Toilet cleaning service</td>
+                        <td><button>Book</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

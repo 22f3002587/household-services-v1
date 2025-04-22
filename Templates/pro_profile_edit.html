@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div>
+        <h2>Update your profile</h2>
+        <form action="/prof_edit_profile" method="POST">
+            <input type="text" name="fullname" placeholder="New Full Name" required><br>
+            <input type="text" name="experience" placeholder="Experience" required><br>
+            <input type="text" name="address" placeholder="Address" required><br>
+            <input type="text" name="pincode" placeholder="Pincode" required><br>
+            <button name="save" value="{{prof_id}}">Save Changes</button>
+        </form>
+        {% if message %}{{message}}{% endif %}
+    </div>
+</body>
+</html>

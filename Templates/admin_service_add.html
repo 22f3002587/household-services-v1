@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 48%;
+            margin-right: 4%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        
+
+        h5 {
+            color: green;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Add Service</h2>
+    <form action="/service_add" method="POST">
+        <label for="id1">Service Category:</label>
+        <select name="service_category" id="id1" required>
+            <option value="">Select</option>
+            <option value="Health & Wellness">Health & Wellness</option>
+            <option value="Saloon">Saloon</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Home Decoration">Home Decoration</option>
+        </select>
+
+        <label for="id2">Service Name:</label>
+        <input type="text" id="id2" name="service_name" required>
+        <h5>{% if alert %}{{alert}}{% endif %}</h5>
+
+        <label for="desc">Service Description:</label>
+        <textarea name="description" id="desc" rows="4"></textarea>
+
+        <label for="time">Expected Time:(in hrs/days)</label>
+        <input type="text" id="time" name="expect_time" required>
+
+        <label for="id3">Base Price:</label>
+        <input type="text" id="id3" name="price">
+
+        <span><input style="background-color: #218838; display:inline;" type="submit" name="submit" value="Add"></span>
+        <span><input style="display: inline; background-color: red;" type="submit" name="submit" value="Cancel"></span>
+    </form>
+    
+    {% if add %}<h5>{{add}}</h5>{% endif %}
+
+    <a href="/admin_home">Go Back</a>
+</body>
+
+</html>

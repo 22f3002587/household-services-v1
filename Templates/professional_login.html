@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Login</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            /* Adjust the background color */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            border: 2px solid black;
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            width: 536px;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+            font-size: 24px;
+            margin: -183px 174px 25px 175px;
+            border: 2px solid black;
+            border-radius: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            border: 1px solid black;
+            padding: 8px;
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        h5{
+            margin-top:-12px;
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Professional Login</h2>
+    <form action="/prof_login" method="POST">
+        <label for="id">Professional Email: </label>
+        <input type="text" id="id" name="email" required><br>
+        <h5>{% if alert1 %}{{alert1}}{% endif %}</h5>
+
+        <label for="pass">Password: </label>
+        <input type="password" id="pass" name="password" required><br>
+        <h5>{% if alert2 %}{{alert2}}{% endif %}</h5>
+
+        <button>Login</button><br>
+        <a href="/prof_signup">Register as Professional</a>
+    </form>
+</body>
+
+</html>

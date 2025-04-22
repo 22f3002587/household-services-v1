@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to our Home</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+            background-image:url('/static/bermix-studio-iwz5tmhjl7o-unsplash.jpg');
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        img {
+            width: 257px;
+            border: 2px solid black;
+            border-radius: 12px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #title {
+            color: #fff;
+            background-color:rgb(57, 60, 69);
+            padding: 15px;
+            width: 1000px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .login-options {
+            display: flex;
+            position: absolute;
+            width: 67%;
+        }
+
+        .login-option {
+            background-image:url('/static/depositphotos_468078462-stock-photo-abstract-geometric-background-poly-pattern.jpg');
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .login-option img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .login-option h3 {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: black;
+            width: 70px;
+            color: white;
+            font-weight: bold;
+            height: 30px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="/static/photo.png" alt="Logo">
+        <h1 id="title">Welcome to Home Assist</h1>
+        <h3 style="font-weight: bolder; font-size:22px;">Please select your login type</h3>
+
+        <div class="login-options">
+            <div class="login-option">
+                <h3>I'm a Customer</h3>
+                <a href="/customer_login"><button>Go</button></a>
+            </div>
+            <div class="login-option">
+                <h3>I'm a Admin</h3>
+                <a href="/admin_login"><button>Go</button></a>
+            </div>
+            <div class="login-option">
+                <h3>I'm a Professional</h3>
+                <a href="/prof_login"><button>Go</button></a>
+            </div>
+
+</body>
+
+</html>

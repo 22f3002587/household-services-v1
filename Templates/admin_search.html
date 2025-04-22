@@ -1,0 +1,247 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        .navbar {
+            background-color: green;
+            color: white;
+        }
+
+        .navbar a {
+            font-size: 19px;
+            float: right;
+            display: block;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            color: azure;
+            margin-top: -13px;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: xx-large;
+            font-weight: bolder;
+            margin-bottom: -35px;
+            padding: 20px;
+            margin-top: 2px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Welcome to Admin Panel</h2>
+        <a href="/logout_user">Logout</a>
+        <a href="#">Summary</a>
+        <a href="/admin_search">Search</a>
+        <a href="/admin_home">Home</a>
+    </div><br>
+
+    <div class="content">
+        <h3>Search a professional</h3>
+        <form action="/admin_search" method="POST">
+            <input type="hidden" name="form_id" value="id1">
+            <label for="id1">Search By: </label>
+            <select name="search_by" id="id1" required>
+                <option value="">Select</option>
+                <option value="pro_email">Email</option>
+                <option value="pro_name">Name</option>
+                <option value="pro_service">Service</option>
+            </select>
+            <input type="text" name="pro" placeholder="Enter here" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/admin_search" method="POST">
+            <input type="hidden" name="form_id" value="id2">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email ID</th>
+                    <th>Service Name</th>
+                    <th>Experience</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                </tr>
+                {% for record in pro %}
+                <tr>
+                    <td>{{record.fullname}}</td>
+                    <td>{{record.email}}</td>
+                    <td>{{record.service_name}}</td>
+                    <td>{{record.experience}}</td>
+                    <td>{{record.status}}</td>
+                    <td>
+                        <button name="action" value="Accept{{record.email}}">Accept</button>
+                        <button name="action" value="Reject{{record.email}}">Reject</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        .navbar {
+            background-color: green;
+            color: white;
+        }
+
+        .navbar a {
+            font-size: 19px;
+            float: right;
+            display: block;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            color: azure;
+            margin-top: -13px;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: xx-large;
+            font-weight: bolder;
+            margin-bottom: -35px;
+            padding: 20px;
+            margin-top: 2px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .content {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 60px;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 22px); /* Full width minus padding */
+            max-width: 150px; /* Limit max width */
+        }
+
+        button {
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h2>Welcome to Admin Panel</h2>
+        <a href="/logout_user">Logout</a>
+        <a href="/admin_search">Search</a>
+        <a href="/admin_home">Home</a>
+    </div>
+
+    <div class="content">
+        <h3>Search a professional</h3>
+        <form action="/admin_search" method="POST">
+            <input type="hidden" name="form_id" value="id1">
+            <label for="id1">Search By: </label>
+            <select name="search_by" id="id1" required>
+                <option value="">Select</option>
+                <option value="pro_email">Email</option>
+                <option value="pro_name">Name</option>
+                <option value="pro_service">Service</option>
+            </select>
+            <input type="text" name="pro" placeholder="Enter here" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <form action="/admin_search" method="POST">
+            <input type="hidden" name="form_id" value="id2">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email ID</th>
+                    <th>Service Name</th>
+                    <th>Experience</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                </tr>
+                {% for record in pro %}
+                <tr>
+                    <td>{{record.fullname}}</td>
+                    <td>{{record.email}}</td>
+                    <td>{{record.service_name}}</td>
+                    <td>{{record.experience}}</td>
+                    <td>
+                        <button name="action" value="Accept{{record.email}}">Accept</button>
+                        <button name="action" value="Reject{{record.email}}">Reject</button>
+                    </td>
+                    <td>{{record.status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

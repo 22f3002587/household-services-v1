@@ -1,0 +1,190 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate our professional</title>
+</head>
+<style>
+    div {
+        text-align: center;
+        border: 2px solid black;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-evenly;
+        border:none;
+    }
+</style>
+
+<body>
+    <div>
+        <h2>Service Remarks</h2>
+        <h3 style="display:inline;">Request ID: </h3><span>{{req_id}}</span>
+        <div class="content">
+            <div>Name: {{pro.fullname}}</div>
+            <div>Email Id:{{pro.email}}</div>
+            <div>Service Name: {{pro.service_name}}</div>
+            <div>Experience: {{pro.experience}}</div>
+        </div>
+
+        <form action="/customer_review" method="POST">
+            <span>Rate Service: </span>
+            <label>
+                <input type="radio" id='rating' name="rating" value="5" required>
+                Excellent
+            </label>
+
+            <label>
+                <input type="radio" id="rating" name="rating" value="4" required>
+                Good
+            </label>
+
+            <label>
+                <input type="radio" id="rating" name="rating" value="3" required>
+                Average
+            </label>
+
+            <label>
+                <input type="radio" id="rating" name="rating" value="2" required>
+                Bad 
+            </label>
+
+            <label>
+                <input type="radio" id="rating" name="rating" value="1" required>
+                Worst
+            </label><br>
+
+            <label for="comment">Comment:</label>
+            <textarea name="review" id="comment" placeholder="write you review..."></textarea><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate our Professional</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        div {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            border: none;
+            margin: 20px 0;
+        }
+
+        .content div {
+            flex: 1;
+            padding: 10px;
+            border-right: 1px solid #ddd;
+            height:35px;
+            text-align:center;
+        }
+
+        .content div:last-child {
+            border-right: none;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 96%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            resize: none;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin-top:30px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Service Remarks</h2>
+        <h3 style="display:inline;">Request ID: </h3><span><b>{{req_id}}</b></span>
+        <div class="content">
+            <div>Name: {{pro.fullname}}</div>
+            <div>Email Id: {{pro.email}}</div>
+            <div>Service Name: {{pro.service_name}}</div>
+            <div>Experience: {{pro.experience}} Years</div>
+        </div>
+
+        <form action="/customer_review" method="POST">
+            <h4>Rate Service: </h4>
+            <label>
+                <input type="radio" name="rating" value="5" required>
+                Excellent
+            </label>
+            <label>
+                <input type="radio" name="rating" value="4" required>
+                Good
+            </label>
+            <label>
+                <input type="radio" name="rating" value="3" required>
+                Average
+            </label>
+            <label>
+                <input type="radio" name="rating" value="2" required>
+                Bad
+            </label>
+            <label>
+                <input type="radio" name="rating" value="1" required>
+                Worst
+            </label><br>
+
+            <button type="submit" name="submit" value="{{pro.email}}">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
