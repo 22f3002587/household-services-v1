@@ -157,13 +157,13 @@ def custom_home():
             if request.form['form_id']=='clean':
                 serv=Services.query.filter_by(service_id=request.form['service_id']).first()
                 pro=Professional.query.filter_by(service_name=serv.service_name).first()
-                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}').first()
+                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}').first()
                 if req:
                     return redirect(url_for('custom_home',alert="You already booked this service"))
 
                 if pro and pro.status=='Accepted by admin':
                     schedule=date_increment(dt.utcnow())
-                    req=Service_Request(request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}',service_name=serv.service_name, service_id=serv.service_id, customer_id=current_user.email, professional_id=pro.email, scheduled_date=schedule)
+                    req=Service_Request(request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}',service_name=serv.service_name, service_id=serv.service_id, customer_id=current_user.email, professional_id=pro.email, scheduled_date=schedule)
                     db.session.add(req)
                     db.session.commit()
                     return redirect('/customer_home')
