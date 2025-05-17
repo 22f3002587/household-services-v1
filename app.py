@@ -322,7 +322,7 @@ def search_service():
                 return redirect(url_for('custom_home',alert="You already booked this service"))
 
             if pro:
-                req=Service_Request(request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}',service_name=serv.service_name, service_id=serv.service_id, customer_id=current_user.email, professional_id=pro.email, scheduled_date=date_increment(dt.utcnow()))
+                req=Service_Request(request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}',service_name=serv.service_name, service_id=serv.service_id, customer_id=current_user.email, professional_id=pro.email, scheduled_date=date_increment(dt.utcnow()))
                 db.session.add(req)
                 db.session.commit()
                 return redirect('/customer_home')
