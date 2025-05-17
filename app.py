@@ -209,7 +209,7 @@ def custom_home():
             if request.form['form_id']=='saloon':
                 serv=Services.query.filter_by(service_id=request.form['service_id']).first()
                 pro=Professional.query.filter_by(service_name=serv.service_name).first()
-                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}').first()
+                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}').first()
                 if req:
                     return redirect(url_for('custom_home',alert="You already booked this service"))
 
@@ -227,7 +227,7 @@ def custom_home():
             if request.form['form_id']=='electrician':
                 serv=Services.query.filter_by(service_id=request.form['service_id']).first()
                 pro=Professional.query.filter_by(service_name=serv.service_name).first()
-                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}').first()
+                req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}').first()
                 if req:
                     return redirect(url_for('custom_home',alert="You already booked this service"))
 
@@ -317,7 +317,7 @@ def search_service():
         if request.form['action']=='Book':
             serv=Services.query.filter_by(service_id=request.form['service_id']).first()
             pro=Professional.query.filter_by(service_name=serv.service_name).first()
-            req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form['customer_email'][:3]}{request.form['service_id'][0]}').first()
+            req=Service_Request.query.filter_by(service_id=serv.service_id, request_id=f'{request.form["customer_email"][:3]}{request.form["service_id"][0]}').first()
             if req:
                 return redirect(url_for('custom_home',alert="You already booked this service"))
 
