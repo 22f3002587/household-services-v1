@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime as dt, timedelta
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, login_required
+import os
 
 app=Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///Household_Database.sqlite3"
@@ -640,4 +641,4 @@ def logout():
  
 
 if __name__=='__main__':
-    app.run()
+    app.run(host="0.0.0.0", port= int(os.environ.get("PORT", 5000)))
