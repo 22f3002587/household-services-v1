@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -95,6 +95,199 @@
                 <h3>I'm a Professional</h3>
                 <a href="/prof_login"><button>Go</button></a>
             </div>
+
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Home Assist</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url('/static/bermix-studio-iwz5tmhjl7o-unsplash.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        img {
+            width: 150px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #title {
+            color: #fff;
+            background-color: rgba(57, 60, 69, 0.8);
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-top: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            color: #eee;
+        }
+
+        .login-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 90%;
+            max-width: 900px;
+            margin-top: 30px;
+        }
+
+        .login-option {
+            /* Blended background color using linear gradient */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: calc(33% - 20px);
+            min-width: 200px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s ease, background 0.3s ease; /* Changed transition to 'background' */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+        }
+
+        .login-option:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.4) 100%); /* Slightly darker on hover */
+            background-color: seagreen;
+        }
+
+        .login-option img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            filter: brightness(1.2);
+        }
+
+        .login-option h3 {
+            margin: 15px 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .login-option a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            height: 40px;
+            border-radius: 10px;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-options {
+                width: 95%;
+            }
+
+            .login-option {
+                width: calc(50% - 20px);
+                min-width: 150px;
+            }
+
+            #title {
+                font-size: 2rem;
+                width: 90%;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-option {
+                width: 90%;
+            }
+
+            #title {
+                font-size: 1.7rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="/static/photo.png" alt="Logo">
+        </div>
+        <h1 id="title">Welcome to Home Assist</h1>
+        <h3>Please select your login type</h3>
+    </div>
+
+    <div class="login-options">
+        <div class="login-option">
+            <h3>I'm a Customer</h3>
+            <a href="/customer_login"><button>Go</button></a>
+        </div>
+        <div class="login-option">
+            <h3>I'm an Admin</h3>
+            <a href="/admin_login"><button>Go</button></a>
+        </div>
+        <div class="login-option">
+            <h3>I'm a Professional</h3>
+            <a href="/prof_login"><button>Go</button></a>
+        </div>
+    </div>
 
 </body>
 

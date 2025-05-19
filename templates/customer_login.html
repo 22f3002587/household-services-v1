@@ -9,12 +9,24 @@
         /* Basic reset and body styling */
         body {
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Add some padding to the body for small screens */
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Use min-height to ensure full viewport coverage */
+        }
+
+        /* Styling for the container div */
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Make the container take full width */
+            max-width: 656px; /* Limit the maximum width on larger screens */
+            margin-top:-273px;
         }
 
         /* Styling for heading */
@@ -25,20 +37,23 @@
             padding: 14px;
             font-size: 24px;
             font-weight: bolder;
-            margin-bottom: 40px;
-            width:656px;
+            margin-bottom: 30px; /* Reduce margin for smaller screens */
+            width: 100%; /* Make the heading take full width of the container */
             border: 2px solid black;
-            border-radius: 20px;
+            border-radius: 10px; /* Adjust border-radius for smaller screens */
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
         }
 
         /* Styling for the form */
         form {
-            width: 350px;
+            width: 100%; /* Make the form take full width of the container */
+            max-width: 350px; /* Limit the maximum width of the form */
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 2px solid black;
+            box-sizing: border-box; /* Ensure padding and border are included in the width */
         }
 
         /* Styling form labels and inputs */
@@ -46,15 +61,18 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
+            font-size: 16px; /* Adjust font size for better readability on smaller screens */
         }
 
-        input[type="text"], input[type="password"] {
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px; /* Adjust font size for better readability on smaller screens */
         }
 
         /* Alert styling */
@@ -69,13 +87,13 @@
         /* Styling for buttons */
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px; /* Increase padding for better touch targets */
             background-color: #000;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: medium;
+            font-size: 16px; /* Adjust font size for better readability on smaller screens */
         }
 
         button:hover {
@@ -86,22 +104,14 @@
         a {
             display: block;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px; /* Increase margin for better spacing */
             color: #000;
             text-decoration: none;
+            font-size: 16px; /* Adjust font size for better readability on smaller screens */
         }
 
         a:hover {
             text-decoration: underline;
-        }
-
-        /* Center the form content */
-        div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
         }
     </style>
 </head>

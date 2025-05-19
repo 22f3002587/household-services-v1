@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -75,6 +75,150 @@
         h5{
             margin-top:-12px;
             color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Professional Login</h2>
+    <form action="/prof_login" method="POST">
+        <label for="id">Professional Email: </label>
+        <input type="text" id="id" name="email" required><br>
+        <h5>{% if alert1 %}{{alert1}}{% endif %}</h5>
+
+        <label for="pass">Password: </label>
+        <input type="password" id="pass" name="password" required><br>
+        <h5>{% if alert2 %}{{alert2}}{% endif %}</h5>
+
+        <button>Login</button><br>
+        <a href="/prof_signup">Register as Professional</a>
+    </form>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Login</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            border: 2px solid black;
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            width: 536px;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            margin: -183px 174px 25px 175px;
+            font-size: 24px;
+            border: 2px solid black;
+            border-radius: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            border: 1px solid black;
+            padding: 8px;
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        h5 {
+            margin-top: -12px;
+            color: red;
+        }
+
+        /* CSS for mobile devices */
+        @media screen and (max-width: 600px) {
+            body {
+                background-color: #e0e0e0; /* Lighter background for mobile */
+            }
+
+            h2 {
+                font-size: 1.5em;
+                padding: 15px;
+                margin: -10px auto 15px auto; /* Adjust margin for better mobile view */
+                width: 90%; /* Make the heading wider on mobile */
+            }
+
+            form {
+                width: 85%; /* Adjust form width for mobile */
+                padding: 15px;
+                border: 1px solid #ccc; /* Thinner border for mobile */
+                border-radius: 10px;
+            }
+
+            label {
+                font-size: 0.9em;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                padding: 8px;
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 1em;
+            }
+
+            a {
+                font-size: 0.85em;
+            }
+
+            h5 {
+                font-size: 0.8em;
+                margin-top: -8px;
+            }
         }
     </style>
 </head>
