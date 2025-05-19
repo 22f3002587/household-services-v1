@@ -9,70 +9,175 @@
         body {
             display: flex;
             flex-direction: column;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
         .navbar {
             background-color: green;
             color: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        h3 {
-            margin-bottom: -11px;
-            font-size: 24px;
-            text-align: center;
-
-        }
-
-        .navbar a {
-            font-size: 19px;
-            float: right;
-            display: block;
-            text-align: center;
-            padding: 0px 16px;
-            text-decoration: none;
-            color: azure;
-            margin-top: -13px;
-            margin-bottom: 28px;
-        }
-
-        h2 {
-            font-size: xx-large;
+        .navbar h2 {
+            font-size: 1.5em;
             font-weight: bolder;
-            margin-bottom: -35px;
-            padding: 20px;
-            margin-top: 2px;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
 
-        table {
-            margin: 17px 134px;
-            border: 2px solid black;
-            border-radius: 19px;
+        .navbar a {
+            font-size: 1em;
+            display: block;
+            text-align: center;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: azure;
+            margin: 5px 0;
+        }
+
+        .navbar a:hover {
+            background-color: darkgreen;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            text-align: center;
+            margin: 20px 10px 5px 10px;
         }
 
         p {
             text-align: center;
-            font-size: 17px;
+            font-size: 0.9em;
+            margin: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.85em;
+            white-space: nowrap;
         }
 
         th {
-            border-bottom: 2px solid black;
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
         }
 
         td {
-            padding: 5px;
             text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
 
         span {
-            margin: -9px 0px 19px 0px;
+            display: block;
             text-align: center;
+            margin: 20px 0;
+        }
+
+        span a button {
+            padding: 10px 15px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        span a button:hover {
+            background-color: darkgreen;
         }
 
         form {
-            display: flex;
-            flex-direction: column;
+            display: block;
+            margin: 10px;
+        }
 
+        /* Desktop View */
+        @media (min-width: 768px) {
+            .navbar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 20px;
+            }
+
+            .navbar h2 {
+                font-size: xx-large;
+                margin-bottom: 0;
+                padding: 0;
+                text-align: left;
+            }
+
+            .navbar a {
+                float: none;
+                display: inline-block;
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-left: 15px;
+            }
+
+            h3 {
+                font-size: 24px;
+                text-align: left;
+                margin: 20px 134px -11px 134px;
+            }
+
+            p {
+                text-align: center;
+                font-size: 17px;
+            }
+
+            table {
+                margin: 17px 134px;
+                border: 2px solid black;
+                border-radius: 19px;
+                width: auto;
+                overflow-x: auto !important;
+                display: table !important;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 1em;
+                white-space: normal;
+            }
+
+            span {
+                text-align: center;
+                margin: -9px 0px 19px 0px;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -80,9 +185,11 @@
 <body>
     <div class="navbar">
         <h2>Welcome to Admin Panel</h2>
-        <a href="/logout_user">Logout</a>
-        <a href="/admin_search">Search</a>
-        <a href="/admin_home">Home</a>
+        <div style="display: flex;">
+            <a href="/admin_home">Home</a>
+            <a href="/admin_search">Search</a>
+            <a href="/logout_user">Logout</a>
+        </div>
     </div><br>
     <h3>Professional Details: </h3><br>
     {% if professional|length==0 %}
@@ -91,27 +198,32 @@
     <form action="/admin_home" method="POST">
         <input type="hidden" name="form_id" value="id1">
         <table>
-            <tr>
-                <th>Name</th>
-                <th>Email ID</th>
-                <th>Service Name</th>
-                <th>Experience</th>
-                <th>Approval Status</th>
-                <th>Action</th>
-            </tr>
-            {% for record in professional %}
-            <tr>
-                <td>{{record.fullname}}</td>
-                <td><a href="/prof_view/{{record.email}}">{{record.email}}</a></td>
-                <td>{{record.service_name}}</td>
-                <td>{{record.experience}} Years</td>
-                <td>{{record.status}}</td>
-                <td><button name="action" value="Accept{{record.email}}">Accept</button>
-                    <button name="action" value="Reject{{record.email}}">Reject</button>
-                    <button name="action" value="Block{{record.email}}">Block</button>
-                </td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email ID</th>
+                    <th>Service Name</th>
+                    <th>Experience</th>
+                    <th>Approval Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in professional %}
+                <tr>
+                    <td>{{record.fullname}}</td>
+                    <td><a href="/prof_view/{{record.email}}">{{record.email}}</a></td>
+                    <td>{{record.service_name}}</td>
+                    <td>{{record.experience}} Years</td>
+                    <td>{{record.status}}</td>
+                    <td>
+                        <button name="action" value="Accept{{record.email}}">Accept</button>
+                        <button name="action" value="Reject{{record.email}}">Reject</button>
+                        <button name="action" value="Block{{record.email}}">Block</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </form><br>
     {% endif %}
@@ -125,26 +237,31 @@
     <form action="/admin_home" method="POST">
         <input type="hidden" name="form_id" value="id2">
         <table>
-            <tr>
-                <th>Service ID</th>
-                <th>Service Category</th>
-                <th>Service Name</th>
-                <th>Price</th>
-                <th>Expected Time</th>
-                <th>Action</th>
-            </tr>
-            {% for record in services %}
-            <tr>
-                <td>{{record.service_id}}</td>
-                <td>{{record.service_category}}</td>
-                <td>{{record.service_name}}</td>
-                <td>Rs. {{record.base_price}}</td>
-                <td>{{record.expected_time}}</td>
-                <td><button name="button" value="Edit{{record.service_id}}">Edit</button>
-                    <button name="button" value="Delete{{record.service_id}}">Delete</button>
-                </td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Service ID</th>
+                    <th>Service Category</th>
+                    <th>Service Name</th>
+                    <th>Price</th>
+                    <th>Expected Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in services %}
+                <tr>
+                    <td>{{record.service_id}}</td>
+                    <td>{{record.service_category}}</td>
+                    <td>{{record.service_name}}</td>
+                    <td>Rs. {{record.base_price}}</td>
+                    <td>{{record.expected_time}}</td>
+                    <td>
+                        <button name="button" value="Edit{{record.service_id}}">Edit</button>
+                        <button name="button" value="Delete{{record.service_id}}">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </form><br>
     {% endif %}
@@ -156,30 +273,34 @@
 
     {% else %}
     <table>
-        <tr>
-            <th>Request ID</th>
-            <th>Customer_ID</th>
-            <th>Assigned Professional ID</th>
-            <th>Service</th>
-            <th>Request Date</th>
-            <th>Closed Date</th>
-            <th>Status</th>
-        </tr>
-        {% for record in service_request %}
-        <tr>
-            <td>{{record.request_id}}</td>
-            <td>{{record.customer_id}}</td>
-            <td>{{record.professional_id}}</td>
-            <td>{{record.service_name}}</td>
-            <td>{{record.requested_date.strftime('%d-%m-%Y')}}</td>
-            {% if record.closed_date == None %}
-            <td>Closing Date Pending</td>
-            {% else %}
-            <td>{{record.closed_date.strftime('%d-%m-%Y')}}</td>
-            {% endif %}
-            <td>{{record.status}}</td>
-        </tr>
-        {% endfor %}
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Customer_ID</th>
+                <th>Assigned Professional ID</th>
+                <th>Service</th>
+                <th>Request Date</th>
+                <th>Closed Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in service_request %}
+            <tr>
+                <td>{{record.request_id}}</td>
+                <td>{{record.customer_id}}</td>
+                <td>{{record.professional_id}}</td>
+                <td>{{record.service_name}}</td>
+                <td>{{record.requested_date.strftime('%d-%m-%Y')}}</td>
+                {% if record.closed_date == None %}
+                <td>Closing Date Pending</td>
+                {% else %}
+                <td>{{record.closed_date.strftime('%d-%m-%Y')}}</td>
+                {% endif %}
+                <td>{{record.status}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     {% endif %}
 
@@ -191,29 +312,33 @@
     <form action="/admin_home" method="POST">
         <input type="hidden" name="form_id" value="id3">
         <table>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Pin Code</th>
-                <th>Contact</th>
-                <th>Action</th>
-                <th>Status</th>
-            </tr>
-            {% for record in customer %}
-            <tr>
-                <td>{{record.fullname}}</td>
-                <td>{{record.email}}</td>
-                <td>{{record.address}}</td>
-                <td>{{record.pin_code}}</td>
-                <td>{{record.contact}}</td>
-                <td>
-                    <button name="button" value="block{{record.email}}">Block</button>
-                    <button name="button" value="unblock{{record.email}}">Unblock</button>
-                </td>
-                <td>{{record.status}}</td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Pin Code</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in customer %}
+                <tr>
+                    <td>{{record.fullname}}</td>
+                    <td>{{record.email}}</td>
+                    <td>{{record.address}}</td>
+                    <td>{{record.pin_code}}</td>
+                    <td>{{record.contact}}</td>
+                    <td>
+                        <button name="button" value="block{{record.email}}">Block</button>
+                        <button name="button" value="unblock{{record.email}}">Unblock</button>
+                    </td>
+                    <td>{{record.status}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </form>
     {% endif %}
