@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search your desire service</title>
+    <title>Search your desired service</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -17,24 +17,26 @@
         .navbar {
             background-color: #333;
             color: white;
-            padding: 10px 0;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .navbar h1 {
-            font-size: 28px;
-            margin-left: 20px;
-            font-weight: bold;
+            font-size: 24px;
+            margin: 5px 0;
         }
 
         .navbar a {
             font-size: 16px;
-            padding: 10px 20px;
+            padding: 8px 12px;
             text-decoration: none;
             color: white;
             transition: background 0.3s;
+            margin: 2px;
+            display: inline-block;
         }
 
         .navbar a:hover {
@@ -59,21 +61,24 @@
 
         form {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            margin-bottom: 40px;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
-        select, input[type="text"], button {
+        select,
+        input[type="text"],
+        button {
             padding: 10px;
-            margin: 0 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
         }
 
         select {
-            width: 160px;
+            min-width: 160px;
         }
 
         button {
@@ -94,7 +99,8 @@
             border: 1px solid #ccc;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -122,6 +128,72 @@
             background-color: #575757;
         }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar h1 {
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+
+            .navbar a {
+                display: block;
+                padding: 8px 0;
+            }
+
+            form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            select,
+            input[type="text"],
+            button {
+                width: 100%;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+                padding: 10px;
+                background: #fff;
+                border-radius: 6px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 10px;
+                border: none;
+                font-size: 15px;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                flex-basis: 45%;
+                color: #555;
+            }
+        }
     </style>
 </head>
 
@@ -162,11 +234,11 @@
             <tbody>
                 {% for record in service %}
                 <tr>
-                    <td>{{record.service_category}}</td>
-                    <td>{{record.service_name}}</td>
-                    <td>{{record.description}}</td>
-                    <td>Rs. {{record.base_price}}</td>
-                    <td>
+                    <td data-label="Service Category">{{record.service_category}}</td>
+                    <td data-label="Service Name">{{record.service_name}}</td>
+                    <td data-label="Description">{{record.description}}</td>
+                    <td data-label="Price">Rs. {{record.base_price}}</td>
+                    <td data-label="Action">
                         <form action="/customer_search" method="POST">
                             <input type="hidden" name="form_id" value="{{record.service_category}}">
                             <input type="hidden" name="service_id" value="{{record.service_id}}">
